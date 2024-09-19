@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buy Page</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.buy-container {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.buy-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.buy-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buy-container label {
+  margin-bottom: 10px;
+}
+
+.buy-container input[type="text"], .buy-container input[type="number"] {
+  width: calc(100% - 20px);
+  height: 30px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buy-container button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Big Boy's Cars!</h1>
+  </header>
+  <main>
+    <section class="buy-container">
+      <h2>Buy Your Dream Car</h2>
+      <form>
+        <label for="car-make">Car Make:</label>
+        <input type="text" id="car-make" name="car-make">
+        <br>
+        <label for="car-model">Car Model:</label>
+        <input type="text" id="car-model" name="car-model">
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price">
+        <br>
+        <label for="mileage">Mileage:</label>
+        <input type="number" id="mileage" name="mileage">
+        <br>
+        <button id="buy-button">Buy Now</button>
+      </form>
+    </section>
+  </main>
+  <script>
+
+const carMakeInput = document.getElementById('car-make');
+const carModelInput = document.getElementById('car-model');
+const priceInput = document.getElementById('price');
+const mileageInput = document.getElementById('mileage');
+const buyButton = document.getElementById('buy-button');
+
+
+buyButton.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  if (carMakeInput.value === '' || carModelInput.value === '' || priceInput.value === '' || mileageInput.value === '') {
+    alert('Please fill all fields!');
+  } else {
+
+    const car = {
+      make: carMakeInput.value,
+      model: carModelInput.value,
+      price: parseInt(priceInput.value),
+      mileage: parseInt(mileageInput.value),
+    };
+
+    const carDetails = document.createElement('div');
+    carDetails.textContent = `You are buying a ${car.make} ${car.model} with a price of ${car.price} and mileage of ${car.mileage}.`;
+
+    const buyContainer = document.querySelector('.buy-container');
+    buyContainer.appendChild(carDetails);
+    carMakeInput.value = '';
+    carModelInput.value = '';
+    priceInput.value = '';
+    mileageInput.value = '';
+  }
+});
+  </script>
+</body>
+</html>
